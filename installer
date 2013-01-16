@@ -1,0 +1,30 @@
+#! /bin/bash
+
+# Future ideas
+#  update listener
+#
+
+printf "Installation for pbin has begun"
+
+# check if git exists
+## if not, use wget or brew
+
+mkdir ~/pbin
+cd ~/pbin
+
+# request list of existing commands
+##  add ability to include deprecated
+
+# create config file
+
+
+# loop through each available command
+
+## pull latest rev
+## do md5 checksum
+
+
+# update .bash_profile to have ~/pbin in $PATH
+
+# remove installer 
+

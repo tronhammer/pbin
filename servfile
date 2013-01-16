@@ -1,0 +1,6 @@
+#! /bin/bash
+
+exec 3<>/dev/tcp/$1/$2
+cat $3>&3 &
+
+exit

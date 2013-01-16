@@ -1,0 +1,35 @@
+#! /bin/sh
+
+subject="";
+message="";
+phone="";
+
+while getopts "m:s:p:" optname
+  do
+    case "$optname" in
+      m)
+        message="$OPTARG"
+        ;;
+      s)
+        subject="$OPTARG"
+        ;;
+      p)
+        phone="$OPTARG"
+        ;;
+      *)
+      # Should not occur
+        echo "Invalid option: -$OPTARG"
+        ;;
+    esac
+  done
+
+# If the message is empty, we will assume the first param is the message
+if [ -z "$message" ];
+then 
+  message="$1"; 
+fi
+
+if [ "$phone" != "" ];
+then
+  echo "$message" | mail -s "$subject" -- $phone@txt.att.net;
+fi
