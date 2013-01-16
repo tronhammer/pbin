@@ -1,0 +1,25 @@
+#! /bin/bash
+
+# deamonized listener 
+## loop check to see if lsof -i:PORT has activity every 5 seconds
+## when it does, start the byte counter
+
+#while [ "`du $1 | awk '{print $1}'`" != "$2" ] 
+while [ "`ls -l $1 | awk '{print $5}'`" != "$2" ] 
+do
+	tput sc;
+	echo -ne "`du -sh $1 | xargs`";
+	sleep 1;
+	tput el1;
+	tput rc; 	
+done
+
+sleep 5
+
+kill `lsof -t -i:9091`
+
+curl --data-urlencode -G -d "msg=$3" http://tronnet.me/mb.php
+
+speak_message='say "'$3'"'
+osascript -e "$speak_message"
+
